@@ -1,0 +1,117 @@
+O Docker não é a única criança da rua!
+Um passeio sobre as alternativas ao Docker - Episódio de hoje: rkt (Rocket).
+15:04 25 May 2018
+Tags: docker, rkt, acbuild, containers
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@gmail.com
+http://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* $ whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Host no SudoCast e no Test After Deploy;
+- Membro da organização do meetup DevOps Floripa;
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock.
+
+* Agenda
+
+- Objetivo e avisos
+- O que são containers?
+- Evolução da tecnologia de containers
+- O que é Docker?
+- rkt e acbuild
+- Demo
+- Links úteis
+- Encerramento
+
+* Objetivo
+
+Mostrar que nem só de Docker vivem o mundo dos containers, existem outras soluções que também estão no mercado e podem nos ajudar.
+
+* Avisos
+
+- Não usamos essas ferramentas em produção... Ainda!
+- Não se apeguem e fiquem reféns de uma tecnologia somente.
+- Talk introdutória, ao final da apresentação colocarei links para vocês se aprofundarem no assunto.
+- Apesar de falarmos de Containers, esta talk não tem o patrocínio do Porto de Santos (Piada sem graça habitual do host desse programa).
+
+* O que são containers?
+
+É um conjunto de processos que estão isolados do resto do sistema. Processos estes que são executados a partir de uma imagem distinta que fornece todos os arquivos necessários a eles.
+
+* Evolução da tecnologia de containers
+
+- 1979-1982 - UNIX chroot
+- 1998 - FreeBSD jail
+- 2001 - Parallels Virtuozzo
+- 2001 - Linux-VServer
+- 2005 - Solaris Containers
+- 2005 - OpenVZ
+- 2008 - Linux LXC
+- 2007-2008 - (Heroku)
+- 2013 - Docker
+- 2014 - rkt
+- 2017 - Cri-O
+
+* O que é Docker?
+
+O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de facilitar o desenvolvimento, a implantação e a execução de aplicações em ambientes isolados.
+
+* rkt (Rocket)
+
+.image rkt.png _ 800
+
+* Características
+
+- Criado pela CoreOS;
+- CLI para rodar containers de apps no Linux;
+- Integrado com o systemd;
+- Integrado para rodar com ferramentas de orquestração de containers (Kubernetes)
+- 100% compatível com o Docker.
+
+* acbuild
+
+- Criado para geração de imagens do AppC
+- Desenvolvimento suspenso devido a criação da Open Container Initiative (OCI)
+- Por isso devemos usar o buildah (Project Atomic) ou umoci (OpenSuse).
+
+* hello-rkt.go
+
+.code hello-rkt.go
+
+* Buildando a aplicação
+
+Gerando o binário estático
+.code build.txt
+
+Verificando o arquivo
+.code ldd.txt
+
+* Criando a imagem com o acbuild
+
+.code build-rkt.sh
+
+* Rodando a imagem
+
+.code build_image.txt
+
+A instrução `--insecure-options=image` é requerida devido ao rkt experar que uma imagem seja verificada através de uma chave gpg.
+
+* Bônus Round - Rodando rkt a partir de uma imagem Docker.
+
+.code build_docker.txt
+
+Para referenciarmos uma imagem Docker, basta usar o `docker://` para fazer o pull da imagem.
+
+Como o Docker não suporta imagens verificadas, é obrigatório passarmos a instrução `--insecure-options=image`.
+
+* Links úteis
+
+.link https://coreos.com/rkt/ Overview
+.link https://coreos.com/docs/ Documentação
+.link https://medium.com/@adriaandejonge/moving-from-docker-to-rkt-310dc9aec938 Migrando do Docker para o rkt
+.link https://www.upguard.com/articles/docker-vs-coreos Docker vs rkt

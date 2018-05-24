@@ -1,0 +1,1 @@
+$ rkt --insecure-options=image run hello-rkt-0.0.1-linux-amd64.aci

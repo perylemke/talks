@@ -1,0 +1,4 @@
+$ file hello-rkt
+hello-rkt: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+$ ldd hello-rkt
+	not a dynamic executable
