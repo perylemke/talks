@@ -1,6 +1,5 @@
 O Docker não é a única criança da rua!
-Um passeio sobre as alternativas ao Docker - Episódio de hoje: rkt (Rocket).
-15:04 25 May 2018
+Um passeio sobre as alternativas ao Docker - Episódio de hoje: rkt.
 Tags: docker, rkt, acbuild, containers
 
 Pery Lemke
@@ -42,6 +41,8 @@ Mostrar que nem só de Docker vivem o mundo dos containers, existem outras solu�
 * O que são containers?
 
 É um conjunto de processos que estão isolados do resto do sistema. Processos estes que são executados a partir de uma imagem distinta que fornece todos os arquivos necessários a eles.
+
+Lembrando que um container podem gerar imagens para outros containers.
 
 * Evolução da tecnologia de containers
 
@@ -111,7 +112,13 @@ Como o Docker não suporta imagens verificadas, é obrigatório passarmos a inst
 
 * Links úteis
 
-.link https://coreos.com/rkt/ Overview
+.link https://github.com/perylemke/talks/tree/master/docker-alternatives-rkt Repositório da apresentação
+.link https://coreos.com/rkt/ Overview do rkt
 .link https://coreos.com/docs/ Documentação
 .link https://medium.com/@adriaandejonge/moving-from-docker-to-rkt-310dc9aec938 Migrando do Docker para o rkt
 .link https://www.upguard.com/articles/docker-vs-coreos Docker vs rkt
+.link https://crg.eti.br/post/compilacao-estatica-com-golang Compilação Estática com Golang
+
+* Agradecimentos
+
+- Daniel Romero (@infoslack)
