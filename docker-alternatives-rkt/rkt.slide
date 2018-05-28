@@ -23,6 +23,7 @@ http://www.sudocast.com.br/
 - Evolução da tecnologia de containers
 - O que é Docker?
 - rkt e acbuild
+- Comandos básicos
 - Demo
 - Links úteis
 - Encerramento
@@ -80,6 +81,15 @@ O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de 
 - Desenvolvimento suspenso devido a criação da Open Container Initiative (OCI)
 - Por isso devemos usar o buildah (Project Atomic) ou umoci (OpenSuse).
 
+* Comandos básicos do rkt
+
+- run
+- stop
+- list
+- rm
+
+* Demonstração
+
 * hello-rkt.go
 
 .code hello-rkt.go
@@ -115,6 +125,7 @@ Como o Docker não suporta imagens verificadas, é obrigatório passarmos a inst
 .link https://github.com/perylemke/talks/tree/master/docker-alternatives-rkt Repositório da apresentação
 .link https://coreos.com/rkt/ Overview do rkt
 .link https://coreos.com/docs/ Documentação
+.link https://coreos.com/rkt/docs/latest/commands.html Todos os comandos
 .link https://medium.com/@adriaandejonge/moving-from-docker-to-rkt-310dc9aec938 Migrando do Docker para o rkt
 .link https://www.upguard.com/articles/docker-vs-coreos Docker vs rkt
 .link https://crg.eti.br/post/compilacao-estatica-com-golang Compilação Estática com Golang
