@@ -63,7 +63,7 @@ O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de 
 
 * rkt (Rocket)
 
-.image rkt.png _ 800
+.image img/rkt.png _ 800
 
 * Características
 
@@ -81,29 +81,29 @@ O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de 
 
 * hello-rkt.go
 
-.code hello-rkt.go
+.code code/hello-rkt.go
 
 * Buildando a aplicação
 
 Gerando o binário estático
-.code build.txt
+.code terminal/build.txt
 
 Verificando o arquivo
-.code ldd.txt
+.code terminal/ldd.txt
 
 * Criando a imagem com o acbuild
 
-.code build-rkt.sh
+.code code/build-rkt.sh
 
 * Rodando a imagem
 
-.code build_image.txt
+.code terminal/build_image.txt
 
 A instrução `--insecure-options=image` é requerida devido ao rkt experar que uma imagem seja verificada através de uma chave gpg.
 
 * Bônus Round - Rodando rkt a partir de uma imagem Docker.
 
-.code build_docker.txt
+.code terminal/build_docker.txt
 
 Para referenciarmos uma imagem Docker, basta usar o `docker://` para fazer o pull da imagem.
 
@@ -115,3 +115,7 @@ Como o Docker não suporta imagens verificadas, é obrigatório passarmos a inst
 .link https://coreos.com/docs/ Documentação
 .link https://medium.com/@adriaandejonge/moving-from-docker-to-rkt-310dc9aec938 Migrando do Docker para o rkt
 .link https://www.upguard.com/articles/docker-vs-coreos Docker vs rkt
+
+* Agradecimentos
+
+- Daniel Romero (@infoslack)
