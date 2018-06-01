@@ -132,9 +132,10 @@ Podemos buildar esse container com o comando abaixo:
 
 .code terminal/podman_cmds.txt
 
-* Motivo principal para trocar o Docker pelo CRI-Objetivo
+* Motivo principal para trocar o Docker pelo CRI-O
 
 - Usar uma runtime que esteja 100% integrada ao Kubernetes, pois isso evitará que alguma atualização do Docker impacte profundamente no funcionamento do Kubernetes.
+- No caso do Podman, é que caso seja necessário acessar um container para debugar possíveis erros.
 
 * Links úteis
 
