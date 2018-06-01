@@ -1,17 +1,17 @@
-# Construindo um container com base na imagem do fedora
-$ container=$(buildah from --name balin fedora) 
+# Compilando a aplicação no Host
+$ CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' hello-buildah.go
+
+# Construindo um container com base na imagem Scratch
+$ container=$(buildah from --name balin scratch) 
 
 # Montando o container no filesystem do root
 $ mnt=$(buildah mount $container)
 
-# Instalando o go
-dnf install --installroot=$mnt go
-
-# Compilando a aplicação
-$ CGO_ENABLED=0 go build -ldflags '-extldflags "-static"' hello-buildah.go
+# Caso seja necessário instalar o Bash nesta imagem.
+$ dnf install --installroot=$mnt --release 28 bash coreutils --setopt install_weak_deps=false -y
 
 # Copiando nosso fonte para o container
-$ cp -pv ./hello-buildah $mnt/usr/bin/hello-buildah
+$ cp -pv ./hello-buildah $mnt/hello-buildah
 
 # Rodando a nossa aplicação
-$ buildah run $container hello-buildah
+$ buildah run $container /hello-buildah
