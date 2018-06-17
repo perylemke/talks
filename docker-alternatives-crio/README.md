@@ -6,4 +6,4 @@ Esta talk visa demonstrar algumas alternativas ao Docker como runtime de contain
 
 Esta talk foi apresentada nos seguintes meetups e/ou lives:
 
-- [TAD #37]()
+- [TAD #37](https://www.youtube.com/watch?v=NNu0QhZX2M0)
