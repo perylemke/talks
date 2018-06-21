@@ -1,0 +1,8 @@
+FROM ekidd/rust-musl-builder as builder
+RUN mkdir -p /src
+COPY ./ /src
+RUN cargo build --release
+
+FROM debian:jessie-slim
+COPY --from=builder /src/target/x86_64-unknown-linux-musl/release/multi-stage-build-rust .
+CMD ["./multi-stage-build-rust"]

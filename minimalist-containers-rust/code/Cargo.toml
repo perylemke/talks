@@ -1,0 +1,7 @@
+[package]
+name = "jabex"
+version = "0.1.0"
+authors = ["Pery Lemke <pery.lemke@gmail.com>"]
+
+[dependencies.iron]
+version = "*"

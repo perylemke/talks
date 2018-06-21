@@ -1,0 +1,110 @@
+Containers minimalistas em aplicações Rust
+Tags: docker, rust, containers
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@gmail.com
+http://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* $ whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Host no SudoCast e no Test After Deploy;
+- Membro da organização do meetup DevOps Floripa;
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock.
+
+* Objetivo
+
+- Mostrar rapidamente que é possível criar containers minúsculos usando o Multi Stage Build do Docker, com isso economizando espaço em nossas máquinas e servers;
+
+* Avisos
+
+- Não sou especialista Rust, mas gosto bastante de Containers;
+- Esta talk tem prós e contras;
+- #NoBigFatDaemons.
+
+* O que são containers?
+
+É um conjunto de processos que estão isolados do resto do sistema. Processos estes que são executados a partir de uma imagem distinta que fornece todos os arquivos necessários a eles.
+
+Lembrando que um container podem gerar imagens para outros containers.
+
+* O que é Docker?
+
+O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de facilitar o desenvolvimento, a implantação e a execução de aplicações em ambientes isolados.
+
+* O que é Multi Stage Build?
+
+- Feature da versão 17.05;
+- Melhor manutenção;
+- Dockerfiles mais limpos e claros.
+
+* Imagem ilustrativa
+
+.image img/multi-stage-build.png _ 1050
+
+* App
+
+.code code/main.rs
+
+* Rodando o App
+
+.code terminal/runapp.txt
+
+* Containerizando nossa aplicação
+
+* Imagem base
+
+- Iremos utilizar a imagem criada pelo @ericmkidd que se chama *rust-musl-builder*, que contém um compilador Rust com a biblioteca padrão C mínima do musl para que os binários possam ser compilados estaticamente possam ser criados sem instalar um compilador customizado.
+
+.link https://github.com/emk/rust-musl-builder
+
+* Gerando nossa imagem
+
+- Dockerfile
+.code code/Dockerfile.fatdaemon
+- Imagem gerada
+.code terminal/fatdaemon.txt
+
+* Debian Slim
+
+- Dockerfile
+.code code/Dockerfile.debian-slim
+- Comparativo
+.code terminal/debian-slim.txt
+
+* Alpine
+
+- Dockerfile
+.code code/Dockerfile.alpine
+- Comparativo
+.code terminal/alpine.txt
+
+* Scratch
+
+- Dockerfile
+.code code/Dockerfile.scratch
+- Comparativo
+.code terminal/scratch.txt
+
+* Considerações Finais
+
+Prós:
+
+- Economia de espaço em nossas máquinas e servers;
+- Maior rapidez em dar pull nas imagens.
+
+Contras:
+
+- Dificuldade em debugar erros na aplicação.
+
+* Dúvidas?
+
+* Links úteis
+
+.link https://hub.docker.com/r/ekidd/rust-musl-builder/~/dockerfile/ rust-musl-builder
+.link https://docs.docker.com/develop/develop-images/multistage-build/ Use multi-stage builds
+.link https://blog.semicolonsoftware.de/building-minimal-docker-containers-for-rust-applications/ Building Minimal Docker Containers for Rust Applications
+.link https://whitfin.io/speeding-up-rust-docker-builds/ Optimizing Docker Images for Rust Projects 

@@ -1,0 +1,8 @@
+$ docker build -t rust-tdc:scratch .
+[...]
+
+$ docker images | grep rust-tdc
+rust-tdc  scratch     168a886793f8   2 minutes ago  6.62MB
+rust-tdc  alpine      65d3376e7bd8   9 minutes ago  10.8MB
+rust-tdc  debian-slim 2f2023a9f7f9  17 minutes ago  85.8MB
+rust-tdc  fatdaemon   f4105a5e4a53  22 minutes ago  1.62GB
