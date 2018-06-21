@@ -1,0 +1,9 @@
+$ cargo run
+   [...]
+    Compiling multi-stage-build-rust v0.1.0 (file:///home/projects/rust/multi-stage-build-rust)
+    Running `target/debug/multi-stage-build-rust
+On 7777
+
+# Em outra aba
+$ curl localhost:7777
+Olá mundo! Escutem o SudoCast! :)

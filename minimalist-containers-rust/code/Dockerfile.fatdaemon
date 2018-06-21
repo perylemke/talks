@@ -1,0 +1,5 @@
+FROM ekidd/rust-musl-builder
+RUN mkdir -p /home/rust/src
+COPY ./ /home/rust/src
+RUN cargo build --release
+CMD ["/home/rust/src/target/x86_64-unknown-linux-musl/release/multi-stage-build-rust"]

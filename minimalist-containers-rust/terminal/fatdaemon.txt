@@ -1,0 +1,5 @@
+$ docker build -t rust-tdc:fatdaemon .
+[...]
+
+$ docker images | grep rust-tdc
+rust-tdc  fatdaemon f4105a5e4a53  22 seconds ago  1.62GB
