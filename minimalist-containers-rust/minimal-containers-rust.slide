@@ -48,6 +48,7 @@ O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de 
 * App
 
 .code code/main.rs
+.code code/Cargo.toml
 
 * Rodando o App
 
