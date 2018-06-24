@@ -1,0 +1,100 @@
+Docker Multi Stage Build
+O Milagre da otimização de imagens!
+Tags: docker, containers
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@gmail.com
+http://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* $ whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Host no SudoCast e no Test After Deploy;
+- Membro da organização do meetup DevOps Floripa;
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock.
+
+* Objetivo
+
+* O que é Multi Stage Build?
+
+- Feature da versão 17.05;
+- Melhor manutenção;
+- Dockerfiles mais limpos e claros.
+
+* Imagem ilustrativa
+
+.image img/multi-stage-build.png _ 1050
+
+* Exemplos
+
+* Python
+
+* Java
+
+* PHP
+
+* Rust
+
+* Case Nuveo
+
+* Cenário
+
+* Desafio
+
+- Otimizar as nossas imagens;
+- Desenvolvedores que tem pouco espaço em disco.
+
+* Dockerfile sem Multi Stage Build
+
+* Caminhos a seguir
+
+- Scratch
+- Alpine
+
+* O que é scratch?
+
+- Imagem vazia;
+- Extremamente minimalista.
+
+* O que é Alpine?
+
+- Baseada em musl libc e BusyBox;
+- Minimalista;
+- 5MB.
+
+* “Talk is a cheap, show me a code!” - Linus Torvalds
+
+* Multi Stage Build com scratch
+
+* Porém...
+
+- Inicialmente pensamos em varíaveis de ambiente;
+- Uma biblioteca usada por nós que faz uma chamada syscall que necessita de *libc*.
+
+* Multi Stage Build com Alpine
+
+* Resultado
+
+* Com isso ganhamos...
+
+- Economia de espaço de disco em nossas máquinas e servers;
+- Tempo de pull reduziu pela metade;
+- Time feliz. :)
+
+* Dica
+
+- Docker criará dangling images;
+- Use *docker* *image* *prune* *-f*
+
+* Conclusão
+
+Se você utiliza Docker, recomendo fortemente estudar e aplicar o Multi Stage Build para otimizar as imagens de suas aplicações.
+
+.image img/go-docker.png _ 850
+
+* Dúvidas, Perguntas e/ou Adendos?
+
+* Links úteis
