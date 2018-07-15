@@ -1,0 +1,19 @@
+WORKDIR /prebuild/receipt
+RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc && \
+    npm rebuild node-sass --force && \
+    npm i . && \
+    npm cache clean --force
+ENV PATH="./node_modules/.bin:${PATH}"
+RUN mkdir -p /home/www/receipt && \
+    ng build --prod --output-path=/home/www/receipt \
+    --deploy-url="/receipt/" --base-href="/receipt/"
+
+FROM alpine:3.7
+RUN apk add --no-cache ca-certificates
+RUN mkdir -p /prebuild
+COPY --from=builder /usr/local/bin/caddy /usr/local/bin/caddy
+COPY --from=builder /prebuild/Caddyfile /prebuild/Caddyfile
+WORKDIR /home/www
+COPY --from=builder /home/www .
+ENTRYPOINT ["/usr/local/bin/caddy"]
+CMD ["--conf", "/prebuild/Caddyfile", "--log", "stdout"]

@@ -1,0 +1,19 @@
+$ docker images | grep singlestage
+nuveo/publicapi     singlestage  5f70933980e7  3 days ago  849MB
+nuveo/supervisor    singlestage  daf822c1318d  3 days ago  1.7GB
+nuveo/process       singlestage  ab52229298f7  3 days ago  1.66GB
+nuveo/prest         singlestage  2947e0bb0a8f  3 days ago  847MB
+nuveo/jobs          singlestage  9fc2744af24f  3 days ago  1.67GB
+nuveo/frontend      singlestage  cfcc4cf6e18e  3 days ago  1.09GB
+nuveo/application   singlestage  ee282df6c8f8  3 days ago  1.65GB
+nuveo/auth          singlestage  4b551551ba4e  3 days ago  817MB
+
+$ docker images | grep scratch
+nuveo/publicapi     scratch      0579bd61d643  About a minute ago   13MB
+nuveo/supervisor    scratch      8eaa2cf2de39  8 minutes ago        19.3MB
+nuveo/process       scratch      603f37735c70  23 minutes ago       17.7MB
+nuveo/prest         scratch      32a90e566378  40 minutes ago       13.6MB
+nuveo/jobs          scratch      0eb901cf85e5  About an hour ago    17.5MB
+nuveo/frontend      scratch      8521538a250a  About an hour ago    20.4MB
+nuveo/application   scratch      54e836aa6cba  2 hours ago          18.4MB
+nuveo/auth          scratch      1d4874eaf90c  2 hours ago          12.8MB

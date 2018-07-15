@@ -28,36 +28,62 @@ http://www.sudocast.com.br/
 
 .image img/multi-stage-build.png _ 1050
 
+* “Talk is a cheap, show me a code!” - Linus Torvalds
+
 * Exemplos
 
 * Python
 
+.code code/Dockerfile.python
+
 * Java
 
-* PHP
+.code code/Dockerfile.emjava
 
 * Rust
+
+Não perca a talk " Containers minimalistas em aplicações Rust" na Trilha de Rust no Sabádo ;)
 
 * Case Nuveo
 
 * Cenário
 
+.code terminal/before_multi_stage.txt
+
 * Desafio
 
-- Otimizar as nossas imagens;
-- Desenvolvedores que tem pouco espaço em disco.
+- Otimizar as nossas imagens para que tenham o menor tamanho possível;
 
 * Dockerfile sem Multi Stage Build
+
+.code code/Dockerfile.nomultistage
 
 * Caminhos a seguir
 
 - Scratch
 - Alpine
 
+* Scratch
+
 * O que é scratch?
 
 - Imagem vazia;
 - Extremamente minimalista.
+
+* Multi Stage Build com scratch
+
+.code code/Dockerfile.scratch
+
+* Resultado
+
+.code terminal/compare_scratch.txt
+
+* Porém...
+
+- Inicialmente pensamos em varíaveis de ambiente;
+- Uma biblioteca usada por nós que faz uma chamada syscall que necessita de *libc*.
+
+* Alpine
 
 * O que é Alpine?
 
@@ -65,18 +91,23 @@ http://www.sudocast.com.br/
 - Minimalista;
 - 5MB.
 
-* “Talk is a cheap, show me a code!” - Linus Torvalds
-
-* Multi Stage Build com scratch
-
-* Porém...
-
-- Inicialmente pensamos em varíaveis de ambiente;
-- Uma biblioteca usada por nós que faz uma chamada syscall que necessita de *libc*.
-
 * Multi Stage Build com Alpine
 
+.code code/Dockerfile.alpine
+
 * Resultado
+
+.code terminal/compare_alpine.txt
+
+* Bonus round
+
+* Frontend
+
+.code code/Dockerfile.frontend
+
+* Frontend continuação...
+
+.code code/Dockerfile.frontend2
 
 * Com isso ganhamos...
 
@@ -98,3 +129,8 @@ Se você utiliza Docker, recomendo fortemente estudar e aplicar o Multi Stage Bu
 * Dúvidas, Perguntas e/ou Adendos?
 
 * Links úteis
+.link https://docs.docker.com/develop/develop-images/multistage-build/ Documentação Oficial
+.link https://medium.com/test-after-deploy/otimizando-suas-imagens-docker-com-multi-stage-build-a2271169af52 Otimizando suas imagens Docker com Multi Stage Build
+.link https://www.mundodocker.com.br/docker-multi-stage-builds/ Mundo Docker
+.link https://lekum.org/post/multistage-dockerfile/ Lighter Python images using multi-stage Dockerfiles
+.link http://blog.arungupta.me/smaller-java-image-docker-multi-stage-build/ Creating Smaller Java Image using Docker Multi-stage Build

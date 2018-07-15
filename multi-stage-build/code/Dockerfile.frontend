@@ -1,0 +1,20 @@
+FROM node:8-alpine as builder
+
+ARG NPM_TOKEN
+ARG NUVEO_ENVIRONMENT
+
+RUN apk --update add curl ca-certificates g++ make python bash && \
+    curl https://getcaddy.com | bash -s personal && \
+    chown node:node /usr/local/bin/caddy && \
+    chmod 755 /usr/local/bin/caddy
+
+COPY ./ /prebuild
+WORKDIR /prebuild
+
+RUN echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > .npmrc && \
+    npm rebuild node-sass --force && \
+    npm i .
+ENV PATH="./node_modules/.bin:${PATH}"
+RUN mkdir -p /home/www && \
+    ./build_frontend.sh
+

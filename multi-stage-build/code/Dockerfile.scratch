@@ -1,0 +1,17 @@
+FROM nuveo/base:golang as builder
+
+RUN mkdir -p /go/src/github.com/nuveo/auth.core
+COPY  ./ /go/src/github.com/nuveo/auth.core
+WORKDIR /go/src/github.com/nuveo/auth.core
+RUN go get ./... && \
+    go build -ldflags "-s -w" -o auth-bin
+
+RUN mkdir /opt && \
+    curl https://raw.githubusercontent.com/nuveo/tcp-port-wait/master/tcp-port-wait.sh \
+    > /opt/tcp-port-wait && \
+    chmod +X /opt/tcp-port-wait
+
+FROM scratch
+WORKDIR /auth/
+COPY --from=builder /go/src/github.com/nuveo/auth.core/auth-bin .
+CMD ["./auth-bin"]
