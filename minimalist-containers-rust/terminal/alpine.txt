@@ -2,6 +2,6 @@ $ docker build -t rust-tdc:alpine .
 [...]
 
 $ docker images | grep rust-tdc
-rust-tdc  alpine      65d3376e7bd8  24 seconds ago  10.8MB
-rust-tdc  debian-slim 2f2023a9f7f9   7 minutes ago  85.8MB
-rust-tdc  fatdaemon   f4105a5e4a53  12 minutes ago  1.62GB
+rust-tdc  alpine         65d3376e7bd8  24 seconds ago  10.8MB
+rust-tdc  debian-slim    2f2023a9f7f9   7 minutes ago  85.8MB
+rust-tdc  fatcontainer   f4105a5e4a53  12 minutes ago  1.62GB

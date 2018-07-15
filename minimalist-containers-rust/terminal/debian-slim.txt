@@ -2,5 +2,5 @@ $ docker build -t rust-tdc:debian-slim .
 [...]
 
 $ docker images | grep rust-tdc
-rust-tdc  debian-slim 2f2023a9f7f9  8 seconds ago   85.8MB
-rust-tdc  fatdaemon   f4105a5e4a53  22 seconds ago  1.62GB
+rust-tdc  debian-slim  2f2023a9f7f9  8 seconds ago   85.8MB
+rust-tdc  fatcontainer f4105a5e4a53  22 seconds ago  1.62GB
