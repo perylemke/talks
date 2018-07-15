@@ -1,0 +1,21 @@
+FROM nuveo/base:golang as builder
+
+RUN mkdir -p /go/src/github.com/nuveo/auth.core
+COPY  ./ /go/src/github.com/nuveo/auth.core
+WORKDIR /go/src/github.com/nuveo/auth.core
+RUN go get ./... && \
+    go build -ldflags "-s -w" -o auth-bin
+
+RUN mkdir /opt && \
+    curl https://raw.githubusercontent.com/nuveo/tcp-port-wait/master/tcp-port-wait. \
+    > /opt/tcp-port-wait && \
+    chmod +X /opt/tcp-port-wait
+
+FROM alpine:3.7
+RUN apk add --no-cache ca-certificates
+WORKDIR /auth/
+COPY --from=builder /go/src/github.com/nuveo/auth.core/auth-bin .
+COPY --from=builder go/src/github.com/nuveo/auth.core/entrypoint.sh .
+COPY --from=builder /opt/tcp-port-wait .
+ENTRYPOINT ["sh", "./entrypoint.sh"]
+CMD ["./auth-bin"]

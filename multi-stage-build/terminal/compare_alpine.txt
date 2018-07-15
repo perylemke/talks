@@ -1,0 +1,19 @@
+$ docker images | grep singlestage
+nuveo/publicapi     singlestage  5f70933980e7  3 days ago  849MB
+nuveo/supervisor    singlestage  daf822c1318d  3 days ago  1.7GB
+nuveo/process       singlestage  ab52229298f7  3 days ago  1.66GB
+nuveo/prest         singlestage  2947e0bb0a8f  3 days ago  847MB
+nuveo/jobs          singlestage  9fc2744af24f  3 days ago  1.67GB
+nuveo/frontend      singlestage  cfcc4cf6e18e  3 days ago  1.09GB
+nuveo/application   singlestage  ee282df6c8f8  3 days ago  1.65GB
+nuveo/auth          singlestage  4b551551ba4e  3 days ago  817MB
+
+$ docker images | grep alpine
+nuveo/publicapi     alpine       27f0160a31ab  23 minutes ago      17.8MB
+nuveo/supervisor    alpine       c7df7e50b269  28 minutes ago      24.9MB
+nuveo/process       alpine       cb41bcf62ff6  43 minutes ago      23.2MB
+nuveo/prest         alpine       7c6e17746f80  About an hour ago   18.3MB
+nuveo/jobs          alpine       a057c077d852  About an hour ago   22.2MB
+nuveo/frontend      alpine       d635b895ac9a  About an hour ago   45.2MB
+nuveo/application   alpine       9280d99da82a  3 hours ago         23.2MB
+nuveo/auth          alpine       1603d46ff882  3 hours ago         17.5MB
