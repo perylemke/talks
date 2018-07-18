@@ -67,7 +67,7 @@ O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de 
 - Dockerfile
 .code code/Dockerfile.fatcontainer
 - Imagem gerada
-.code terminal/fatdaemon.txt
+.code terminal/fatcontainer.txt
 
 * Debian Slim
 
