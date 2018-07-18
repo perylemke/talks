@@ -110,7 +110,7 @@ Não perca a talk " Containers minimalistas em aplicações Rust" na Trilha de R
 * Com isso ganhamos...
 
 - Economia de espaço de disco em nossas máquinas e servers;
-- Tempo de pull reduziu pela metade;
+- Ficou mais rápido para realizar o pull das nossas imagens;
 - Time feliz. :)
 
 * Dica
