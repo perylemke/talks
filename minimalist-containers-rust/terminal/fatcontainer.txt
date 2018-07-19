@@ -1,4 +1,4 @@
-$ docker build -t rust-tdc:fatdaemon .
+$ docker build -t rust-tdc:fatcontainer .
 [...]
 
 $ docker images | grep rust-tdc
