@@ -1,0 +1,1 @@
+$ rkt --insecure-options=image run jabex-0.0.1-linux-amd64.aci

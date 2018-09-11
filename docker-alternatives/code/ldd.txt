@@ -1,0 +1,5 @@
+$ file jabex
+hello-rkt: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+
+$ ldd jabex
+	not a dynamic executable

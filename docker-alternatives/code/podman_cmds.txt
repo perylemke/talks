@@ -1,0 +1,11 @@
+# Listar todos os containers
+$ podman ps -a
+
+# Rodar um container com a instrução de sleep.
+$ podman run -ti fedora sleep 2000
+
+# Acessar um container
+$ podman exec -ti fedora bash
+
+# Listar as imagens
+$ podman images
