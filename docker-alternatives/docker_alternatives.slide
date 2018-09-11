@@ -1,0 +1,214 @@
+O Docker não é a única criança da rua!
+Um passeio sobre as alternativas ao Docker.
+Tags: docker, cri-o, buildah, containers, podman
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@gmail.com
+http://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* $ whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Host no SudoCast;
+- Membro da organização do meetup DevOps Floripa;
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock;
+- Baterista noob.
+
+* Agenda
+
+- Objetivo e avisos
+- O que são containers?
+- Evolução da tecnologia de containers
+- O que é Docker?
+- rkt e acbuild
+- Demo
+- CRI-O, Buildah e Podman
+- Bem pouco de Kubernetes
+- Comandos básicos
+- Demo 
+- Links úteis
+- Encerramento
+
+* Objetivo
+
+Mostrar que nem só de Docker vivem o mundo dos containers, existem outras soluções que também estão no mercado e podem nos ajudar.
+
+* Avisos
+
+- Não usamos essas ferramentas em produção... Ainda!
+- Não se apeguem e fiquem reféns de uma tecnologia somente.
+- Talk introdutória, ao final da apresentação colocarei links para vocês se aprofundarem no assunto.
+
+* O que são containers?
+
+É um conjunto de processos que estão isolados do resto do sistema. Processos estes que são executados a partir de uma imagem distinta que fornece todos os arquivos necessários a eles.
+
+Lembrando que um container podem gerar imagens para outros containers.
+
+* Evolução da tecnologia de containers
+
+- 1979-1982 - UNIX chroot
+- 1998 - FreeBSD jail
+- 2001 - Parallels Virtuozzo
+- 2001 - Linux-VServer
+- 2005 - Solaris Containers
+- 2005 - OpenVZ
+- 2008 - Linux LXC
+- 2007-2008 - (Heroku)
+- 2013 - Docker
+- 2014 - rkt
+- 2017 - Cri-O
+
+* O que é Docker?
+
+O Docker é uma plataforma aberta, desenvolvida em Go, criada com o objetivo de facilitar o desenvolvimento, a implantação e a execução de aplicações em ambientes isolados.
+
+* rkt (Rocket)
+
+.image img/rkt.png _ 800
+
+* Características
+
+- Criado pela CoreOS;
+- CLI para rodar containers de apps no Linux;
+- Integrado com o systemd;
+- Integrado para rodar com ferramentas de orquestração de containers (Kubernetes)
+- 100% compatível com o Docker.
+
+* acbuild
+
+- Criado para geração de imagens do AppC
+- Desenvolvimento suspenso devido a criação da Open Container Initiative (OCI)
+- Por isso devemos usar o buildah (Project Atomic) ou umoci (OpenSuse).
+
+* Aplicação exemplo
+
+.code code/jabex.go
+
+* Buildando a aplicação
+
+- Gerando o binário estático
+.code code/build.txt
+
+- Verificando o arquivo
+.code code/ldd.txt
+
+* Criando a imagem com o acbuild
+
+.code code/build-rkt.sh
+
+* Rodando a imagem
+
+.code code/build_image.txt
+
+A instrução `--insecure-options=image` é requerida devido ao rkt experar que uma imagem seja verificada através de uma chave gpg.
+
+* Rodando rkt a partir de uma imagem Docker.
+
+.code code/build_docker.txt
+
+Para referenciarmos uma imagem Docker, basta usar o `docker://` para fazer o pull da imagem.
+
+Como o Docker não suporta imagens verificadas, é obrigatório passarmos a instrução `--insecure-options=image`.
+
+* CRI-O
+
+.image img/cri-o.svg _ 800
+
+* Características
+
+- Construído e otimizado somente para o Kubernetes;
+- Tem como motivação principal garantir que tudo funcione 100% para o Kubernetes;
+- Somente suporta imagens no padrão OCI;
+- É uma alternativa mais leve ao Docker e rkt como runtime do Kubernetes.
+
+* Mas antes... O que é Kubernetes?
+
+.image img/kube.png _ 500
+
+* Características
+
+- Plataforma open source que orquestra containers.
+- Apelidos: k8s ou kube;
+- Criado e desenvolvido pelo Google como sucessor do Borg;
+- Aliás, as lições aprendidas no projeto Borg foram usadas no Kubernetes;
+- Elimina grande parte dos processos manuais necessários no gerenciamento de Containers.
+
+* Buildah
+
+.image img/buildah.png _ 800
+
+* Características
+
+- CLI para criação de containers;
+- Interface simples.
+- Usa shell script para criar containers <3
+
+* Demonstração
+
+* Build com o Buildah
+
+.code code/buildah_create.txt
+
+* Comandos básicos
+
+.code code/buildah_cmds.txt
+
+* Buildah com Dockerfile
+
+Dockerfile de exemplo:
+
+.code code/Dockerfile
+
+Podemos buildar esse container com o comando abaixo:
+
+.code code/buildah_docker.txt
+
+* Podman
+
+.image img/podman.svg _ 800
+
+* Características
+
+- CLI para gerenciamento de pods/containers, fortemente baseado na CLI do Docker.
+- Comandos bem similares:
+
+.code code/podman_cmds.txt
+
+* Conclusão
+
+* Motivação para trocar o Docker pelo rkt
+
+- Se caso você quiser utilizar uma runtime de containers que suporte containers verificados, ou seja mais segurança no seu servidor;
+
+* Motivação para trocar o Docker pelo CRI-O
+
+- Usar uma runtime que esteja 100% integrada ao Kubernetes, pois isso evitará que alguma atualização do Docker impacte profundamente no funcionamento do Kubernetes.
+- No caso do Podman, é que caso seja necessário acessar um container para debugar possíveis erros.
+
+* Links úteis - rkt
+
+.link https://github.com/perylemke/talks/tree/master/docker-alternatives-rkt Repositório da apresentação
+.link https://coreos.com/rkt/ Overview do rkt
+.link https://coreos.com/docs/ Documentação
+.link https://medium.com/@adriaandejonge/moving-from-docker-to-rkt-310dc9aec938 Migrando do Docker para o rkt
+.link https://www.upguard.com/articles/docker-vs-coreos Docker vs rkt
+.link https://crg.eti.br/post/compilacao-estatica-com-golang Compilação Estática com Golang
+
+* Links úteis - cri-o
+.link http://cri-o.io/ Site do CRI-O 
+.link https://github.com/kubernetes-incubator/cri-o Github do CRI-O
+.link https://github.com/projectatomic/buildah Github do Buildah
+.link https://github.com/projectatomic/libpod Github do Podman
+.link https://www.projectatomic.io/ Project Atomic
+.link https://www.projectatomic.io/blog/2017/11/getting-started-with-buildah/ Getting Started do Buildah
+
+* Agradecimentos
+
+- John Wendell (@jwendell)
+- Daniel Romero (@infoslack)
+- Rafael Gomes (@gomex)
+- Fernando Ike (@fernandoike)

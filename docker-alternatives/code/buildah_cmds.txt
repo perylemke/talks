@@ -1,0 +1,23 @@
+# Criar um container baseado numa imagem
+$ buildah from
+
+# Montando o container no filesystem
+$ buildah mount
+
+# Listando as imagens no host
+$ buildah imagens
+
+# Listando os containers no host
+$ buildah containers
+
+# Removendo um ou mais containers
+$ buildah rm ; buildah delete ; buildah rmi # remove imagens
+
+# Copiando do host para o container
+$ buildah copy
+
+# Criando uma imagem baseado em container
+$ buildah commit
+
+# Fazendo o push da sua imagem para o Registry
+$ buildah push
