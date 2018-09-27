@@ -57,11 +57,9 @@ Ainda segundo Martin Fowler:
 
 "Continuous Delivery is a software development discipline where you build software in such a way that the software can be released to production at any time."
 
-* O que é Continuous Deployment?
+* Porquê implementar CD?
 
-Segundo a Agile Alliance:
-
-"Continuous deployment can be thought of as an extension of continuous integration, aiming at minimizing lead time, the time elapsed between development writing one new line of code and this new code being used by live users, in production."
+Devemos entregar mais rápido e de maneira automatizada, com isso eliminamos o trabalho manual no que abre uma brecha para erros e teremos um feedback mais para rápido para aprender mais rápido e resolver o problema mais rápido.
 
 * O que é o TravisCI?
 

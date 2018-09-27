@@ -8,3 +8,4 @@ Links das apresentações:
 - [Docker não é a única criança da rua - rkt](https://bit.ly/2ssEatp)
 - [Docker não é a única criança da rua - cri-o](https://bit.ly/2kEhPWf)
 - [Docker Multi Stage Build - O Milagre da otimização de imagens! ](https://bit.ly/2uHDUYH)
+- [Bateu na Travis! Um passeio pelo TravisCI](https://bit.ly/2DBBXV5)
