@@ -1,0 +1,10 @@
+before_script:
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker pull postgres:10
+    - docker pull nuveo/prest
+    - docker run -e "POSTGRES_DB=nuveoapp" --rm --name pql -d -p 9876:5432  postgres:10
+    - docker run --rm --link pql -e "NUVEO_DEBUG=true" -e "NUVEO_PG_HOST=pql" \
+      -e "NUVEO_PG_PORT=5432" \
+      -e "NUVEO_PG_DBNAME=nuveoapp" -e "NUVEO_PG_USER=postgres" \
+      -p 3000:3000 -d nuveo/prest ./prest
+    - go get -t -v ./...

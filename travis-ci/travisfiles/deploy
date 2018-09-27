@@ -1,0 +1,5 @@
+deploy:
+  provider: script
+  script: docker build -t nuveo/prest . && docker push nuveo/prest
+  on:
+    branch: master

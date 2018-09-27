@@ -1,0 +1,2 @@
+after_deploy:
+  - ssh perylemke@server1 "./deploy.sh $TRAVIS_BRANCH"

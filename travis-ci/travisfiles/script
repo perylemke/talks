@@ -1,0 +1,6 @@
+script:
+    - go test $(go list | grep -v vendor)
+    - docker stop pql
+    - docker run -e "POSTGRES_DB=nuveoapp" -v $PWD/migrations:/etc/migrations --rm \
+      --name pql -d -p 9876:5432  postgres:10
+    - ./testMigrations.sh

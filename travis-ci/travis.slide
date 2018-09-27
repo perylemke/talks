@@ -1,0 +1,211 @@
+Bateu na Travis!
+Um passeio sobre o TravisCI.
+Tags: travisci, ci, cd, devops
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@nuveo.ai
+https://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* $ whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Membro da organização do meetup DevOps Floripa;
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock;
+- Baterista noob.
+
+* Agenda
+
+- O que é Continuous Integration? 
+- O que é Continuous Delivery?
+- O que é Continuous Deployment?
+- O que é o TravisCI?
+- Ciclo de vida do build
+- Dissecando o Travisfile
+- Tipos de virtulização
+- Addons
+- Notificações
+- Variáveis de ambiente
+- Encriptando variáveis de ambiente pelo Travis CLI
+
+
+* Agenda
+
+- before_install
+- install
+- before_script
+- script
+- after_success ou after_failure
+- before_deploy
+- deploy
+- after_deploy
+- after_script
+- Um pouco de boas práticas de segurança
+- Links úteis
+
+* O que é Continuous Integration?
+
+Segundo Martin Fowler:
+
+"Continuous Integration is a software development practice where members of a team integrate their work frequently, usually each person integrates at least daily - leading to multiple integrations per day. Each integration is verified by an automated build (including test) to detect integration errors as quickly as possible."
+
+* O que é Continuous Delivery?
+
+Ainda segundo Martin Fowler:
+
+"Continuous Delivery is a software development discipline where you build software in such a way that the software can be released to production at any time."
+
+* O que é Continuous Deployment?
+
+Segundo a Agile Alliance:
+
+"Continuous deployment can be thought of as an extension of continuous integration, aiming at minimizing lead time, the time elapsed between development writing one new line of code and this new code being used by live users, in production."
+
+* O que é o TravisCI?
+
+O Travis CI é um serviço web de Integração Contínua na nuvem integrado com o GitHub. Ele é gratuito para repositórios públicos(travis-ci.org) e pago para repositórios privados(travis-ci.org). Foi desenvolvido em Ruby e seus componentes são distribuídos sob a licença MIT.
+
+Atualmente ele tem suporte para as seguintes linguagens de programação: Android, C, C#, C++, Clojure, Crystal, D, Dart, Erlang, Elixir, F#, Go, Groovy, Haskell, Haxe, Java, Javascript, Julia, Objctive-C, Perl, Perl6, PHP, Python, R, Ruby, Rust, Scala, Smalltalk, Visual Basic.
+
+* Ciclo de vida do build
+
+Para realizar o build no TravisCI são obrigatórios dois passos:
+
+1. install: Para instalação das dependências
+2. script: Rodar os passos do build
+
+Os demais passos são opcionais e falaremos sobre eles mais para frente.
+
+* Dissecando o Travisfile
+
+* Tipos de virtualização
+
+- Ubuntu Precise (Máquina Virtual na GCE)
+- Ubuntu Trusty (Container no EC2)
+- Ubuntu Trusty (Máquina Virtual na GCE)
+- OS X (Máquina virtual)
+
+Para mais detalhes acessar o link:
+
+https://docs.travis-ci.com/user/reference/overview/
+
+* Services
+
+O TravisCI vem com uma série de ferramentas instaladas. Para ativa-las basta descrever a seção `services`.
+
+Exemplo:
+
+.code travisfiles/services
+
+* Notifications
+
+É possível integrar com bots para o Slack ou outros comunicadores, isto pode ser descrito na seção `notifications`. Também pode ser configurado para envio de emails.
+
+Exemplo para o Slack:
+
+.code travisfiles/notifications_slack
+
+Exemplo para email:
+
+.code travisfiles/notifications_email
+
+* Variáveis de ambiente
+
+.code travisfiles/env
+
+Variáveis de ambiente podem ser configuradas no .travis.yml ou pelo painel do TravisCI.
+
+* Encriptando variáveis de ambiente pelo Travis CLI
+
+Em caso de variáveis que devem ficar encriptadas, pode fazer o secret através do Travis CLI
+
+Exemplo:
+
+.code travisfiles/traviscli
+
+* Addons
+
+Instalação de pacotes sem precisar usar `apt-get` no before_install.
+
+Exemplo:
+
+.code travisfiles/addons
+
+* before_install
+
+Instalação de dependências sem utilizar o addons:
+
+.code travisfiles/before_install
+
+* install
+
+Instalação de dependências do projeto:
+
+.code travisfiles/install
+
+* before_script
+
+Essa etapa é feita para configurar seu ambiente antes de executar seu script:
+
+.code travisfiles/before_script
+
+* script
+
+Nesta etapa roda nosso script de testes:
+
+.code travisfiles/script
+
+* after_success ou after_failure
+
+Exibem comandos para em caso de sucesso ou falha do build, usavamos para realização de deploy ou envio de mensagem para o Slack.
+
+Hoje usamos o notifications e/ou o deploy.
+
+* before_deploy
+
+Prepara a nossa implementação, executa alguns comandos para começar o deploy.
+
+.code travisfiles/before_deploy
+
+* deploy
+
+Após o sucesso no build, esta etapa é ativada.
+
+.code travisfiles/deploy
+
+* after_deploy
+
+Esta etapa é somente executada após a etapa de deploy for executada com sucesso.
+
+.code travisfiles/after_deploy
+
+* after_script
+
+Etapa executada após a execução do script.
+
+.code travisfiles/after_script
+
+* Um pouco de boas práticas de segurança
+
+- Rotacionar seus tokens e secrets periodicamente;
+- Evite exibir suas variáveis de ambiente usando env ou printenv;
+- Comandos git como git fetch ou git push podem expor tokens ou outras variáveis ​​de ambiente seguras;
+- Configurações que aumentam a verbosidade do comando;
+- Evitar que os comandos exibam qualquer saída é uma maneira de evitar a exibição acidental de qualquer informação segura.
+
+* Links úteis
+
+- https://martinfowler.com/articles/continuousIntegration.html
+- https://martinfowler.com/bliki/ContinuousDelivery.html
+- https://www.agilealliance.org/glossary/continuous-deployment/
+- https://pt.wikiversity.org/wiki/Travis_CI_-_GitHub
+- https://docs.travis-ci.com/user/customizing-the-build/
+- https://docs.travis-ci.com/user/docker/
+- https://docs.travis-ci.com/user/best-practices-security/
+- https://docs.travis-ci.com/user/encryption-keys/
+- https://docs.travis-ci.com/user/installing-dependencies/
+- https://docs.travis-ci.com/user/database-setup/
+- https://docs.travis-ci.com/user/notifications/
+- http://blog.tgrrtt.com/exploring-the-travisci-configuration-file
