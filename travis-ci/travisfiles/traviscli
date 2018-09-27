@@ -1,0 +1,1 @@
+$ travis encrypt "DOCKER_PASSWORD=f6HSQQuiFLeRF5J" --add env.global

@@ -1,0 +1,3 @@
+after_success:
+- test $TRAVIS_PULL_REQUEST = false \
+  && git push

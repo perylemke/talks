@@ -1,0 +1,6 @@
+notifications:
+  slack: 
+    rooms:
+      - nuveo:tPCYf7IyOZd67llOdpWJAIEP#logs-builds
+    on_success: never
+    on_failure: always
