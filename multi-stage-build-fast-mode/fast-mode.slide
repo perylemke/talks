@@ -1,0 +1,51 @@
+Docker Multi Stage Build
+O Milagre da otimização de imagens! (Modo Rápido)
+Tags: docker, containers
+
+Pery Lemke
+Site Reliability Engineer na Nuveo
+pery.lemke@gmail.com
+http://www.sudocast.com.br/
+@perylemke
+@sudocast
+
+* O que é Multi Stage Build?
+
+.image img/multi-stage-build.png _ 1050
+
+* Cenário
+
+.code terminal/before_multi_stage.txt
+
+* Dockerfile sem Multi Stage Build
+
+.code code/Dockerfile.nomultistage
+
+* Multi Stage Build com scratch
+
+.code code/Dockerfile.scratch
+
+* Resultado
+
+.code terminal/compare_scratch.txt
+
+* Porém...
+
+- Inicialmente pensamos em varíaveis de ambiente;
+- Uma biblioteca usada por nós que faz uma chamada syscall que necessita de *libc*.
+
+* Multi Stage Build com Alpine
+
+.code code/Dockerfile.alpine
+
+* Resultado
+
+.code terminal/compare_alpine.txt
+
+* Com isso ganhamos...
+
+- Economia de espaço de disco em nossas máquinas e servers;
+- Ficou mais rápido para realizar o pull das nossas imagens;
+- Time feliz. :)
+
+Se você utiliza Docker, recomendo fortemente estudar e aplicar o Multi Stage Build para otimizar as imagens de suas aplicações.
