@@ -6,6 +6,7 @@ Pery Lemke
 Site Reliability Engineer na Nuveo
 pery.lemke@gmail.com
 http://www.sudocast.com.br/
+https://www.perylemke.com
 @perylemke
 @sudocast
 
@@ -14,7 +15,8 @@ http://www.sudocast.com.br/
 - Pery Lemke mas pode me chamar de Pery mesmo!
 - Host no SudoCast e no Test After Deploy;
 - Membro da organização do meetup DevOps Floripa;
-- Garimpeiro de bandas obscuras de Stoner e Prog Rock.
+- Garimpeiro de bandas obscuras de Stoner e Prog Rock;
+- Baterista n00b;
 
 * O que é Multi Stage Build?
 
@@ -26,7 +28,7 @@ http://www.sudocast.com.br/
 
 .image img/multi-stage-build.png _ 1050
 
-* “Talk is a cheap, show me a code!” - Linus Torvalds
+* “Talk is a cheap, show me a code!” - Bob Marley
 
 * Exemplos
 
@@ -40,7 +42,7 @@ http://www.sudocast.com.br/
 
 * Rust
 
-Não perca a talk " Containers minimalistas em aplicações Rust" na Trilha de Rust no Sabádo ;)
+Podem olhar os slides da talk "Containers minimalistas em aplicações Rust" - https://bit.ly/2K1dfAA ;)
 
 * Case Nuveo
 
