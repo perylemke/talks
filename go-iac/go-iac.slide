@@ -1,0 +1,238 @@
+# Infra as a Code + Go = <3
+22 Set 2023
+
+Pery Lemke
+pery.lemke@gmail.com
+@perylemke
+
+## $whoami
+
+- Pery Lemke mas pode me chamar de Pery mesmo!
+- Já fui de tudo um pouco, (SysAdmin, SRE, Platform Engineer) mas agora estou em transição para Dev :)
+- Membro da organização do DevOpsDays Florianópolis. Cupom: GOPHERCON10
+- Baterista bem mais ou menos
+- N00b de Jiu Jitsu
+- Fascinado por computação
+- Pai da Aurora ;)
+
+## Aurora <3
+.image images/aurora.jpg 580 600
+
+## O que é Infra as Code?
+
+De maneira simples, é uma abordagem que permite automatizar a criação, configuração e gerenciamento de uma infraestrutura usando código.
+
+## Algumas ferramentas
+
+- CFEngine
+- Puppet
+- Chef
+- Ansible
+- **Terraform (HCL)**
+- **Terraform CDK**
+- **Pulumi**
+
+## Por que adotar uma linguagem de programação para IaC?
+
+- Flexibilidade
+- Curva de aprendizado
+- Escolha da equipe
+
+## Por que não adotar uma linguagem de programação para IaC?
+
+- Flexibilidade
+- Curva de aprendizado
+- Escolha da equipe
+
+## Terraform CDK
+
+Possibilidade de criar infraestrutura com uma linguagem de programação com os providers do Terraform.
+
+Linguagens suportadas:
+
+- TypeScript
+- Python
+- Java
+- C#
+- **Go**
+
+A partir deste momento irei chamar de cdktf para não confundir ;)
+
+## Pulumi
+
+Ferramenta open source que utiliza as mesmas linguagens que o `cdktf`, mas pode utilizar linguagens de marcação como `yaml` e `CUE`.
+
+Você pode conferir as diferenças entre Terraform e Pulumi [aqui](https://www.pulumi.com/docs/concepts/vs/terraform/#differences).
+
+## Estruturas de pastas
+
+## Terraform
+
+```
+├── modules
+│   ├── vpc
+│   │   ├── main.go
+|   |   ├── outputs.go
+|   |   ├── variables.go
+|   |   ├── README.md
+│   ├── s3
+│   │   ├── main.go
+|   |   ├── outputs.go
+|   |   ├── variables.go
+|   |   ├── README.md
+|   | ...Another modules
+├── env
+│   ├── production.tfvars
+│   ├── dev.tfvars
+│   ├── staging.tfvars
+├── tests
+│   ├── vpc_test.go
+│   ├── s3_test.go
+│   ├── README.md
+├── main.go
+├── outputs.go
+├── variables.go
+├── README.md
+```
+
+## cdktf
+
+```bash
+$ cdktf init --template="go" --providers="aws@~>4.0" --project-name="gophercon-iac-cdk" --local
+```
+
+```
+├── gophercon-iac-cdk
+│   ├── .gitignore
+│   ├── cdktf.json
+│   ├── go.mod
+│   ├── go.sum
+│   ├── help
+│   ├── main_test.go
+│   ├── main.go
+```
+
+## Pulumi
+
+```bash
+$ pulumi new aws-go --name gophercon-iac-pulumi
+```
+
+```
+├── gophercon-iac-pulumi
+│   ├── go.mod
+│   ├── go.sum
+│   ├── pulumi.dev.yaml
+│   ├── pulumi.yaml
+│   ├── main.go
+```
+
+## Arquivo de configuração
+
+## Terraform
+
+`provider.tf`
+
+.code code/terraform/provider.tf
+
+## cdktf
+
+`cdktf.json`
+
+.code code/cdktf/cdktf.json
+
+## Pulumi
+
+`Pulumi.yaml`
+
+.code code/pulumi/Pulumi.yaml
+
+`Pulumi.dev.yaml`
+
+.code code/pulumi/Pulumi.dev.yaml
+
+## Armazenamento de estados
+
+## Terraform
+
+`backend.tf`
+
+.code code/terraform/backend.tf
+
+## cdktf
+
+.code code/cdktf/backend.go
+
+## Pulumi
+
+- Pulumi Cloud:
+```bash
+$ pulumi login
+```
+
+- S3:
+```bash
+$ pulumi login s3://<bucket-name>
+```
+
+- Azure Blog Storage:
+```bash
+$ pulumi login azblob://<container-path>
+```
+
+- GCS
+```bash
+$ pulumi login gs://<my-pulumi-state-bucket>
+```
+
+- Local
+```bash
+$ pulumi login --local
+```
+
+## Código
+
+## Terraform
+
+Criando um bucket privado:
+
+.code code/terraform/s3.tf
+
+## cdktf
+
+.code code/cdktf/s3.go
+
+## Pulumi
+
+.code code/pulumi/s3.go
+
+## Testes
+
+## Terraform
+
+No Terraform geralmente utilizamos o `terratest` que usa **Go** como linguagem para os testes.
+
+.code code/terraform/terratest_test.go /^//START/,/^//END/
+
+## cdktf
+
+.code code/cdktf/image_test.go /^//START/,/^//END/
+
+## Pulumi
+
+.code code/pulumi/s3_test.go
+
+## Conclusão
+
+Bom, essa talk serve como uma introdução da introdução sobre o tema. **Minha opinião pessoal:** Se for adotar alguma ferramenta de IaC com Go, adote o **Pulumi**, o Terraform CDK funciona melhor em outras linguagens.
+
+Mas não façam nada na pressa, testem, façam POCs e aplique somente se for algo de fácil manutenção para você e sua equipe.
+
+## Links Úteis
+
+- [Docs do Pulumi](https://www.pulumi.com/docs/)
+- [Docs do cdktf](https://developer.hashicorp.com/terraform/cdktf)
+- [CDKTF — Terraform’s Go CDK](https://medium.com/geekculture/cdktf-terraforms-go-cdk-c7be1a216d67)
+- [Deploy Infrastructure using CDK for Terraform with Go](https://michaellin.me/deploy-infrastructure-using-cdktf-with-go/)
+- [Build AWS infrastructure with CDK for Terraform](https://developer.hashicorp.com/terraform/tutorials/cdktf/cdktf-build)
+- [Should you use Terraform or Pulumi?](https://mkdev.me/posts/should-you-use-terraform-or-pulumi)

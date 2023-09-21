@@ -1,0 +1,3 @@
+name: gophercon2-iac-pulumi
+runtime: go
+description: A minimal AWS Go Pulumi program
