@@ -9,7 +9,6 @@ pery.lemke@gmail.com
 
 - Pery Lemke mas pode me chamar de Pery mesmo!
 - Já fui de tudo um pouco, (SysAdmin, SRE, Platform Engineer) mas agora estou em transição para Dev :)
-- Membro da organização do DevOpsDays Florianópolis. Cupom: GOPHERCON10
 - Baterista bem mais ou menos
 - N00b de Jiu Jitsu
 - Colecionador de camisas de futebol
@@ -19,6 +18,9 @@ pery.lemke@gmail.com
 ## Aurora <3
 .image images/aurora.jpg 580 600
 
+## DevOpsDays Florianópolis - GOPHERCON10
+
+.image images/qrcode.png 500 600
 ## O que é Infra as Code?
 
 De maneira simples, é uma abordagem que permite automatizar a criação, configuração e gerenciamento de uma infraestrutura usando código.
@@ -226,12 +228,15 @@ No Terraform geralmente utilizamos o `terratest` que usa **Go** como linguagem p
 
 ## Conclusão
 
-Bom, essa talk serve como uma introdução da introdução sobre o tema. **Minha opinião pessoal:** Se for adotar alguma ferramenta de IaC com Go, adote o **Pulumi**, o Terraform CDK funciona melhor em outras linguagens.
+Bom, essa talk serve como uma introdução da introdução sobre o tema. 
+
+**Minha opinião pessoal:** Se for adotar alguma ferramenta de IaC com Go, adote o **Pulumi**, o Terraform CDK funciona melhor em outras linguagens.
 
 Mas não façam nada na pressa, testem, façam POCs e aplique somente se for algo de fácil manutenção para você e sua equipe.
 
 ## Links Úteis
 
+- [Repo da Talk](https://github.com/perylemke/talks/tree/main/go-iac)
 - [Docs do Pulumi](https://www.pulumi.com/docs/)
 - [Docs do cdktf](https://developer.hashicorp.com/terraform/cdktf)
 - [CDKTF — Terraform’s Go CDK](https://medium.com/geekculture/cdktf-terraforms-go-cdk-c7be1a216d67)
